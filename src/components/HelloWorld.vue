@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="" md="3" v-for="item in items" :key="item.title">
-        <v-card class="mx-auto" max-width="344" tile>
+        <v-card class="mx-auto" max-width="344" tile :to="item.link">
           <v-list-item three-line>
             <v-list-item-avatar
               tile
@@ -32,10 +32,11 @@ export default {
 
   data: () => ({
     items: [
-      { title: 'CPU Traffig', subtitle: '100%', icon: 'mdi-cog', color: 'info' },
-      { title: 'Likes', subtitle: '45,200', icon: 'mdi-thumb-up-outline', color: 'error' },
-      { title: 'Sales', subtitle: '9,000', icon: 'mdi-cart', color: 'success' },
-      { title: 'Members', subtitle: '800', icon: 'mdi-account-group', color: 'warning' }
+      { title: 'Blogs', subtitle: '1000', icon: 'mdi-post', color: 'info',link: '/blogs' },
+      { title: 'Foods', subtitle: '45,200', icon: 'mdi-food', color: 'error',link: '/foods' },
+      { title: 'Movies', subtitle: '9,000', icon: 'mdi-movie', color: 'success',link: '/movies' },
+      { title: 'Shop', subtitle: '900', icon: 'mdi-cart', color: '#7E57C2', link: '/shopping' },
+      { title: 'Members', subtitle: '800', icon: 'mdi-account-group', color: 'warning',link: '' }
     ]
   }),
 };

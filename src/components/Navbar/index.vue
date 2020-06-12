@@ -8,17 +8,19 @@
 
     <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> 
 
-    <v-toolbar-title>Vuetify crud</v-toolbar-title>
+    <v-toolbar-title>
+      VueJS Project
+    </v-toolbar-title>
     
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        href="https://github.com/krishanathep/vue-vuetify-crud"
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-icon left="">mdi-github</v-icon>
+        Github
       </v-btn>
     </v-app-bar>
 
@@ -64,9 +66,13 @@ export default {
     name: 'Navbar',
     data() {
         return{
-            drawer: '',
+            drawer: null,
             items: [
                 { title: 'Home', icon: 'mdi-home', link: '/' },
+                { title: 'Blogs', icon: 'mdi-post', link: '/blogs'},
+                { title: 'Foods', icon: 'mdi-food', link: '/foods' },
+                { title: 'Movies', icon: 'mdi-movie', link: '/movies'},
+                { title: 'Shop', icon: 'mdi-cart', link: '/shopping' },
                 { title: 'About', icon: 'mdi-information', link: '/about' }
             ]
         }

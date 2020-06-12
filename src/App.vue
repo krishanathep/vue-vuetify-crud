@@ -11,9 +11,11 @@
 <script>
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-export default {
-  name: 'App',
+import { store } from './store/index'
 
+export default {
+  store,
+  name: 'App',
   components: {
     Navbar,Footer
   }
