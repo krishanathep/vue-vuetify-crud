@@ -6,7 +6,7 @@
           <v-card tile>
             <v-card-text>
               <v-container>
-                <v-form @submit.prevent="onSubmit" id="blog-form">
+                <v-form @submit="onSubmit" id="blog-form">
                   <v-text-field label="Title" v-model="form.title" />
                   <v-text-field label="Body" v-model="form.body" />
                   <v-text-field label="Image" v-model="form.image" />
@@ -23,16 +23,6 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="" md="12">
-          <v-card>
-            <v-data-table
-              :headers="headers"
-              :items='blogs'
-              :items-per-page="5"
-  
-            ></v-data-table>
-          </v-card>
-        </v-col>
         <v-col cols="" md="3" v-for="blog in blogs" :key="blog.id">
           <v-card tile>
             <v-img :src="blog.image" />
@@ -45,7 +35,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn tile text color="primary">view</v-btn>
-              <v-btn tile text color="primary">share</v-btn>
+              <v-btn tile text color="error">remove</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -59,11 +49,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      headers: [
-        { text: 'ID', value: 'id' },
-        { text: 'Title', value: 'title' },
-        { text: 'Body', value: 'body' }
-      ],
       blogs: [],
       form: {
         title: "",

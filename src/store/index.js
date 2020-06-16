@@ -8,7 +8,9 @@ export default new Vuex.Store({
     foods: [
       { name: 'Tomyum Kung', price: '250' },
       { name: 'Hamburger', price: '550' },
-      { name: 'Sea Food Salad', price: '250' }
+      { name: 'Sea Food Salad', price: '250' },
+      { name: 'Pud Kapaw', price: '350' },
+      { name: 'Som Tum', price: '120' }
 
     ]
   },

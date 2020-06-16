@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <v-row>
-        <v-col cols="" md="12">
+        <v-col cols="12">
           <v-text-field
             label="Search"
             v-model="query"
