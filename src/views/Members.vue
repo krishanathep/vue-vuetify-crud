@@ -5,48 +5,94 @@
         <v-col cols="" md="12">
           <v-card>
             <v-card-title>
-              ADD MEMBER
+              MEMBER LIST
+              <v-spacer></v-spacer>
+              <v-dialog v-model="dialog" max-width="500px">
+                <template v-slot:activator="{ on }">
+                  <v-btn color="primary" dark class="mb-2" v-on="on"
+                    >ADD NEW</v-btn
+                  >
+                </template>
+                <v-card>
+                  <v-card-title class="headline grey lighten-2" primary-title>
+                    NEW MEMBER
+                  </v-card-title>
+
+                  <v-card-text>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" md="12">
+                          <v-text-field
+                            v-model="user.name"
+                            label="Name"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="12">
+                          <v-text-field
+                            v-model="user.email"
+                            label="Email"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" md="12">
+                          <v-text-field
+                            v-model="user.phone"
+                            label="Phone"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" text @click="onFormSubmit"
+                      >Submit</v-btn
+                    >
+                    <v-btn color="blue darken-1" text @click="close()"
+                      >Cancel</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </v-card-title>
-            <v-form @submit.prevent="onFormSubmit" id="member-form">
-              <v-card-text>
-                <v-text-field label="Name" v-model="user.name"> </v-text-field>
-                <v-text-field label="Email" v-model="user.email">
-                </v-text-field>
-                <v-text-field label="Phone" v-model="user.phone">
-                </v-text-field>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn color="primary" type="submit" form="member-form">
-                  ADD MEMBER
-                </v-btn>
-              </v-card-actions>
-            </v-form>
-          </v-card>
-        </v-col>
-        <v-col cols="" md="12">
-          <v-card>
-            <v-simple-table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="user in users" :key="user.key">
-                  <td>{{user.name}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.phone}}</td>
-                  <td>
-                    <router-link :to="{name: 'ViewMember', params: { id: user.key }}" class="mr-3"><v-icon color="info">mdi-eye</v-icon></router-link>
-                    <router-link :to="{name: 'EditMember', params: { id: user.key }}" class="mr-3"><v-icon color="success">mdi-pencil</v-icon></router-link>
-                    <v-icon color="error" @click.prevent="deleteUser(user.key)">mdi-delete</v-icon>
-                  </td>
-                </tr>
-              </tbody>
-            </v-simple-table>
+            <v-card-text>
+              <v-simple-table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="user in users" :key="user.key">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>
+                      <router-link
+                        :to="{ name: 'ViewMember', params: { id: user.key } }"
+                        class="mr-3"
+                        ><v-icon color="info">mdi-eye</v-icon></router-link
+                      >
+                      <router-link
+                        :to="{ name: 'EditMember', params: { id: user.key } }"
+                        class="mr-3"
+                        ><v-icon color="success"
+                          >mdi-pencil</v-icon
+                        ></router-link
+                      >
+                      <v-icon
+                        color="error"
+                        @click.prevent="deleteUser(user.key)"
+                        >mdi-delete</v-icon
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </v-simple-table>
+            </v-card-text>
           </v-card>
         </v-col>
       </v-row>
@@ -60,6 +106,7 @@ import { db } from "../firebaseDb";
 export default {
   data() {
     return {
+      dialog: false,
       users: [],
       user: {
         name: "",
@@ -94,7 +141,8 @@ export default {
       db.collection("users")
         .add(this.user)
         .then(() => {
-          alert("User successfully created!");
+          this.dialog = false;
+          //alert("User successfully created!");
           this.user.name = "";
           this.user.email = "";
           this.user.phone = "";
@@ -115,6 +163,11 @@ export default {
             console.error(error);
           });
       }
+    },
+    close() {
+      this.name = "";
+      this.price = "";
+      this.dialog = false;
     },
   },
 };
