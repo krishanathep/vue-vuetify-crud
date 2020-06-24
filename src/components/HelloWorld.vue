@@ -32,11 +32,12 @@ export default {
 
   data: () => ({
     items: [
+      { title: 'Repair Systems', subtitle: '999', icon:'mdi-cogs', color: 'error', link: '/repair' },
       { title: 'Blogs', subtitle: '1000', icon: 'mdi-post', color: 'info',link: '/blogs' },
-      { title: 'Foods', subtitle: '45,200', icon: 'mdi-food', color: 'error',link: '/foods' },
+      { title: 'Foods', subtitle: '45,200', icon: 'mdi-food', color: 'yellow',link: '/foods' },
       { title: 'Movies', subtitle: '9,000', icon: 'mdi-movie', color: 'success',link: '/movies' },
       { title: 'Shop', subtitle: '900', icon: 'mdi-cart', color: '#7E57C2', link: '/shopping' },
-      { title: 'Members', subtitle: '800', icon: 'mdi-account-group', color: 'warning',link: '' }
+      { title: 'Members', subtitle: '800', icon: 'mdi-account-group', color: 'warning',link: '/members' }
     ]
   }),
 };
